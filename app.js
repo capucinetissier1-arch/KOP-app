@@ -9,7 +9,9 @@
 // ====== CONFIG ======
 const MODE_BACKEND = true; 
 const API = "https://kop-app-2.onrender.com"; // utilisé seulement si MODE_BACKEND=true
-
+if (MODE_BACKEND) {
+  setInterval(() => fetch(API + "/health").catch(() => {}), 25_000);
+}
 // ====== HELPERS ======
 function go(url) { window.location.href = url; }
 function upperCode(v) { return (v || "").toString().trim().toUpperCase(); }
