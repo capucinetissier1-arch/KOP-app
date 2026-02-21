@@ -7,7 +7,7 @@
  ***********************/
 
 // ====== CONFIG ======
-const MODE_BACKEND = false; // ✅ false = tout marche tout de suite sur GitHub Pages
+const MODE_BACKEND = true; 
 const API = "https://TON-BACKEND-HTTPS.com"; // utilisé seulement si MODE_BACKEND=true
 
 // ====== HELPERS ======
@@ -147,7 +147,7 @@ if (page === "waiting") {
       const tick = async () => {
         const s = await apiGet(`/party/${encodeURIComponent(code)}/status`);
         if (s?.ok && s.started) {
-          return go(buildAppUrl(`lobby.html?role=guest&code=${encodeURIComponent(code)}`));
+          return go(buildAppUrl(`game.html?role=guest&code=${encodeURIComponent(code)}`));
         }
         setTimeout(tick, 1000);
       };
@@ -199,4 +199,17 @@ if (page === "lobby") {
     if (role === "host") go(buildAppUrl("settings.html"));
     else go(buildAppUrl("index.html"));
   });
+
+  const startBtn = document.getElementById("startBtn");
+
+if (role === "host") {
+  startBtn?.addEventListener("click", async () => {
+    const r = await apiPost(`/party/${encodeURIComponent(code)}/start`);
+    if (!r?.ok) return alert("Erreur start (backend).");
+    alert("Partie lancée ✅");
+    go(buildAppUrl(`game.html?role=host&code=${encodeURIComponent(code)}`));
+  });
+} else {
+  if (startBtn) startBtn.style.display = "none";
+}
 }
