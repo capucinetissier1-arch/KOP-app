@@ -180,8 +180,7 @@ if (page === "lobby") {
 
   // ✅ QR UNIVERSel (anti-404) : construit une URL qui garde /KOP-app/
   const qrImg = document.getElementById("qrImg");
-  const joinUrl = buildAppUrl(`index.html?code=${encodeURIComponent(code)}`);
-
+  const joinUrl = buildAppUrl(`waiting.html?code=${encodeURIComponent(code)}`);
   if (qrImg) {
     qrImg.src =
       `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(joinUrl)}`;
