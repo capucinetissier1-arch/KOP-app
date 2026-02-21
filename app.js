@@ -45,39 +45,38 @@ if (page === "home") {
   });
 }
 
-// ================== SETTINGS (settings.html) ==================
-if (page === "settings") {
+// ================== LOBBY (lobby.html) ==================
+if (page === "lobby") {
+  const params = new URLSearchParams(window.location.search);
+  const role = (params.get("role") || "").toLowerCase();
+  const code = upperCode(params.get("code"));
+
+  if (!code) {
+    alert("Aucun code de partie.");
+    return go("index.html");
+  }
+
+  // 🚫 Empêche un guest de rester sur le lobby
+  if (role === "guest") {
+    return go(`waiting.html?code=${encodeURIComponent(code)}`);
+  }
+
+  // 🔤 Afficher le code
+  const codeEl = document.getElementById("game-code");
+  if (codeEl) codeEl.textContent = code;
+
+  // 📱 Générer un QR universel (compatible GitHub Pages)
+  const qrImg = document.getElementById("qrImg");
+  if (qrImg) {
+    const APP_BASE = "https://capucinetissier1-arch.github.io/KOP-app";
+    const joinUrl = `${APP_BASE}/index.html?code=${encodeURIComponent(code)}`;
+    qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(joinUrl)}`;
+  }
+
+  // 🔙 Bouton retour
   const backBtn = document.getElementById("backBtn");
-  const nextBtn = document.getElementById("nextBtn");
-
-  const mancheSelect = document.getElementById("mancheSelect");
-  const roundSelect  = document.getElementById("roundSelect");
-  const voteSelect   = document.getElementById("voteSelect");
-
-  backBtn?.addEventListener("click", () => go("index.html"));
-
-  nextBtn?.addEventListener("click", async () => {
-    if (!mancheSelect?.value || !roundSelect?.value || !voteSelect?.value) {
-      alert("Choisis les 3 temps 🙂");
-      return;
-    }
-
-    const manche = Number(mancheSelect.value);
-    const round  = Number(roundSelect.value);
-    const vote   = Number(voteSelect.value);
-
-    // ✅ crée la partie sur le BACKEND
-    const res = await apiPost("/party", { manche, round, vote });
-    if (!res?.ok) {
-      alert("Backend pas lancé ? (vérifie le terminal + /docs)");
-      return;
-    }
-
-    const code = upperCode(res.code);
-    go(`lobby.html?role=host&code=${encodeURIComponent(code)}`);
-  });
+  backBtn?.addEventListener("click", () => go("settings.html"));
 }
-
 // ================== WAITING (waiting.html) ==================
 if (page === "waiting") {
   (async () => {
@@ -121,10 +120,11 @@ if (page === "lobby") {
 
     // QR (vers index.html?code=XXXX)
     if (qrImg && code) {
-      const joinUrl = `${window.location.origin}/index.html?code=${encodeURIComponent(code)}`;
-      qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(joinUrl)}`;
-    }
+     const basePath = window.location.pathname.replace(/\/[^\/]*$/, "/"); // ex: /KOP-app/
+     const joinUrl = `${window.location.origin}${basePath}index.html?code=${encodeURIComponent(code)}`;
 
+    qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(joinUrl)}`;
+    }
     // Retour
     backBtn?.addEventListener("click", () => {
       if (role === "host") go("settings.html");
