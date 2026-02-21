@@ -132,7 +132,7 @@ if (page === "waiting") {
 
     // ✅ MODE LOCAL : on passe direct au lobby guest (pas d’attente réelle)
     if (!MODE_BACKEND) {
-      go(buildAppUrl(`lobby.html?role=guest&code=${encodeURIComponent(code)}`));
+      // en mode local : on reste sur l'écrant attente
       return;
     }
 
