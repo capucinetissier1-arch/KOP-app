@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>KOP - Salle d’attente</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body data-page="lobby">
   <div class="app">
     <header class="app-header">
@@ -19,33 +20,31 @@
 
     <main class="app-main">
       <section class="card card-lobby">
-        <p class="lobby-counter">
-          <span id="players-count">0</span> personnes ont rejoint la partie
+        <!-- ✅ Compteur (1 seul) -->
+        <p class="lobby-counter" id="countText">
+          0 personne a rejoint la partie
         </p>
 
-        <div class="btn-pill primary lobby-code-button" id="game-code">
-          ----
-        </div>
+        <!-- ✅ Code de partie -->
+        <div class="btn-pill primary lobby-code-button" id="game-code">----</div>
 
-       <img id="qrImg" alt="QR Code" class="qr-real">
-
-      
+        <!-- ✅ QR -->
+        <img id="qrImg" alt="QR Code" class="qr-real" />
       </section>
     </main>
 
     <footer class="app-footer app-footer-stars">
-      <button class="star-button secondary" id="backBtn">
+      <button class="star-button secondary" id="backBtn" type="button">
         Retour
       </button>
-      <button class="star-button primary" id="start-game-btn">
+
+      <!-- ✅ LE SEUL bouton Start (celui de droite) -->
+      <button class="star-button primary" id="startBtn" type="button">
         Commencer
       </button>
     </footer>
   </div>
 
   <script src="app.js"></script>
-  <button id="startBtn">Start</button>
-  <p id="countText">0 personne a rejoint</p>
-  <button id="startBtn" type="button">Commencer</button>
 </body>
 </html>
