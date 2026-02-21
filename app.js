@@ -8,7 +8,7 @@
 
 // ====== CONFIG ======
 const MODE_BACKEND = true; 
-const API = "https://TON-BACKEND-HTTPS.com"; // utilisé seulement si MODE_BACKEND=true
+const API = "https://kop-app-2.onrender.com"; // utilisé seulement si MODE_BACKEND=true
 
 // ====== HELPERS ======
 function go(url) { window.location.href = url; }
