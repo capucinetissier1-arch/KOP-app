@@ -130,13 +130,11 @@ if (page === "waiting") {
     const code = upperCode(params.get("code"));
     if (!code) return alert("Aucun code.");
 
-    // ✅ MODE LOCAL : on passe direct au lobby guest (pas d’attente réelle)
     if (!MODE_BACKEND) {
-      // en mode local : on reste sur l'écrant attente
+      // en mode local : on reste sur l'écran attente
       return;
     }
 
-    // ✅ MODE BACKEND : join + attente started
     try {
       const j = await apiPost(`/party/${encodeURIComponent(code)}/join`);
       if (!j?.ok) {
@@ -158,12 +156,28 @@ if (page === "waiting") {
     }
   })();
 }
-
 // ================== LOBBY (lobby.html) ==================
 if (page === "lobby") {
   const params = new URLSearchParams(window.location.search);
   const role = (params.get("role") || "").toLowerCase(); // host | guest
   const code = upperCode(params.get("code"));
+
+  // Compteur (host) : "X personnes ont rejoint"
+const countText = document.getElementById("countText");
+
+async function refreshStatus() {
+  const s = await apiGet(`/party/${encodeURIComponent(code)}/status`);
+  if (s?.ok && countText) {
+    const n = Number(s.count || 0);
+    countText.textContent =
+      `${n} personne${n > 1 ? "s" : ""} ${n > 1 ? "ont" : "a"} rejoint la partie`;
+  }
+}
+
+if (role === "host" && MODE_BACKEND) {
+  refreshStatus();
+  setInterval(refreshStatus, 1000);
+}
 
   if (!code) {
     alert("Aucun code de partie.");
