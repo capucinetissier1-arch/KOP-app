@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>KOP - Accueil</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="home">
+  <div class="app">
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-text">KOP</span>
+        <span class="logo-star logo-star-red">*</span>
+        <span class="logo-star logo-star-blue">*</span>
+        <span class="logo-star logo-star-pink">*</span>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <form class="card card-home" id="home-form">
+        <label class="input-pill">
+          <span class="input-label-visually-hidden">Votre nom</span>
+          <input
+            type="text"
+            id="player-name"
+            name="player-name"
+            placeholder="Votre nom"
+            maxlength="20"
+            required
+          >
+        </label>
+
+        <button type="button" class="btn-pill primary" data-nav="settings" data-action="create">
+          Créer une partie
+        </button>
+
+        <button type="button" class="btn-pill outline" data-action="join">
+          Joindre une partie
+        </button>
+      </form>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

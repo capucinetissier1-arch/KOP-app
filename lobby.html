@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>KOP - Salle d’attente</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="lobby">
+  <div class="app">
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-text">KOP</span>
+        <span class="logo-star logo-star-red">*</span>
+        <span class="logo-star logo-star-blue">*</span>
+        <span class="logo-star logo-star-pink">*</span>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <section class="card card-lobby">
+        <p class="lobby-counter">
+          <span id="players-count">0</span> personnes ont rejoint la partie
+        </p>
+
+        <div class="btn-pill primary lobby-code-button" id="game-code">
+          ----
+        </div>
+
+       <img id="qrImg" alt="QR Code" class="qr-real">
+
+      
+      </section>
+    </main>
+
+    <footer class="app-footer app-footer-stars">
+      <button class="star-button secondary" id="backBtn">
+        Retour
+      </button>
+      <button class="star-button primary" id="start-game-btn">
+        Commencer
+      </button>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

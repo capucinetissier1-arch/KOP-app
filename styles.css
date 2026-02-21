@@ -1,0 +1,338 @@
+/* Palette pastel + typographie très grasse */
+:root {
+    --bg-yellow: #fff5a8;
+    --pink: #ff9ecb;
+    --pink-dark: #f477aa;
+    --text-black: #222222;
+    --star-pink: #ff9ecb;
+    --star-red: #ff5b5b;
+    --star-blue: #4b7bff;
+    --qr-gray: #444444;
+    --radius-pill: 999px;
+    --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  body {
+    background-color: var(--bg-yellow);
+    font-family: var(--font-main);
+    color: var(--text-black);
+  }
+  
+  /* Conteneur principal type appli mobile */
+  .app {
+    min-height: 100vh;
+    max-width: 420px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 20px 20px;
+  }
+  
+  /* Logo KOP en haut */
+  .app-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  
+  .logo {
+    position: relative;
+    text-align: center;
+  }
+  
+  .logo-text {
+    font-weight: 900;
+    font-size: 40px;
+    letter-spacing: 0.12em;
+  }
+  
+  .logo-star {
+    position: absolute;
+    font-size: 22px;
+    font-weight: 900;
+  }
+  
+  .logo-star-red {
+    color: var(--star-red);
+    top: -6px;
+    left: -12px;
+  }
+  
+  .logo-star-blue {
+    color: var(--star-blue);
+    top: -10px;
+    right: -10px;
+  }
+  
+  .logo-star-pink {
+    color: var(--star-pink);
+    bottom: -8px;
+    left: 40%;
+  }
+  
+  /* Zone principale centrée verticalement */
+  .app-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Cartes centrales des 3 écrans */
+  .card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+  
+  .card-home {
+    max-width: 320px;
+  }
+  
+  .card-settings,
+  .card-lobby {
+    max-width: 340px;
+  }
+  
+  /* Inputs et boutons pilules */
+  .input-pill {
+    display: block;
+  }
+  
+  .input-pill input {
+    width: 100%;
+    padding: 16px 22px;
+    border-radius: var(--radius-pill);
+    border: none;
+    background-color: var(--pink);
+    color: #fff;
+    font-weight: 800;
+    font-size: 18px;
+    text-align: center;
+    outline: none;
+  }
+  
+  .input-pill input::placeholder {
+    color: #ffe4f0;
+    opacity: 1;
+  }
+  
+  .input-label-visually-hidden {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+  }
+  
+  /* Boutons pilules principaux */
+  .btn-pill {
+    width: 100%;
+    padding: 16px 22px;
+    border-radius: var(--radius-pill);
+    border: 3px solid var(--pink-dark);
+    background-color: transparent;
+    font-weight: 900;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s;
+  }
+  
+  .btn-pill.primary {
+    background-color: var(--pink);
+    color: #fff;
+  }
+  
+  .btn-pill.outline {
+    background-color: transparent;
+    color: var(--text-black);
+  }
+  
+  .btn-pill:active {
+    transform: translateY(2px);
+    box-shadow: 0 0 0 transparent;
+  }
+  
+  /* Sélecteurs sur settings */
+  /* Sélecteurs sur settings (vrai menu déroulant) */
+.select-pill{
+    position: relative;
+    width: 100%;
+    padding: 16px 22px;
+    border-radius: var(--radius-pill);
+    border: 3px solid var(--pink-dark);
+    background-color: transparent;
+    font-weight: 900;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* Le select devient “invisible” mais cliquable */
+  .select-pill select{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  
+    position: absolute;
+    inset: 0;                 /* couvre tout le pill */
+    width: 100%;
+    height: 100%;
+  
+    border: 0;
+    outline: 0;
+    background: transparent;
+  
+    padding: 16px 22px;
+    padding-right: 52px;      /* laisse la place à la flèche */
+    font: inherit;
+    font-weight: 900;
+    color: var(--text-black);
+  
+    cursor: pointer;
+  }
+  
+  /* Flèche visuelle */
+  .select-arrow{
+    pointer-events: none;     /* important : ne bloque pas le clic */
+    font-size: 18px;
+    margin-left: auto;
+  }
+  
+  .select-arrow {
+    font-size: 18px;
+  }
+  
+  /* Pied de page avec étoiles */
+  .app-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+  }
+  
+  .app-footer-stars {
+    position: relative;
+  }
+  
+  .star-button {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    border-radius: 50% 0 50% 50%;
+    border: none;
+    background-color: var(--pink);
+    color: #fff;
+    font-weight: 900;
+    font-size: 16px;
+    text-transform: lowercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .star-button.secondary {
+    opacity: 0.8;
+  }
+  
+  .star-button.primary {
+    background-color: var(--pink-dark);
+  }
+  
+  /* Lobby */
+  .lobby-counter {
+    text-align: center;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 1.3;
+    margin: 0 0 6px;
+  }
+  
+  #players-count {
+    font-size: 24px;
+  }
+  
+  .lobby-code-button {
+    margin-top: 4px;
+  }
+  
+  .qr-placeholder {
+    margin: 24px auto 12px;
+    width: 180px;
+    height: 180px;
+    border-radius: 30px;
+    border: 8px solid var(--qr-gray);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 8px;
+    padding: 10px;
+  }
+  
+  .qr-block {
+    background-color: var(--qr-gray);
+    border-radius: 18px;
+  }
+  
+  .lobby-share {
+    text-align: center;
+    font-weight: 900;
+    font-size: 20px;
+    margin: 0;
+  }
+  
+  #game-code {
+    font-size: 24px;
+  }
+  
+  /* Responsive simple : un peu plus de marge sur grands écrans */
+  @media (min-width: 480px) {
+    .app {
+      padding-top: 32px;
+    }
+  }
+
+  .qr-real{
+  width: 220px;
+  height: 220px;
+  border-radius: 24px;
+  border: 8px solid var(--qr-gray);
+  background: white;
+  display: block;
+  margin: 18px auto 10px;
+}
+
+.waiting-screen{
+  min-height:100vh;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding-top: 90px;
+  background: var(--bg-yellow); /* ou ta couleur de fond */
+}
+
+.waiting-title{
+  font-weight: 900;
+  font-size: 44px;
+  color: #111;
+}
