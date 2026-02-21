@@ -121,9 +121,8 @@ if (page === "lobby") {
 
     // QR (vers index.html?code=XXXX)
     if (qrImg && code) {
-      const baseDir = window.location.href.replace(/\/[^\/]*$/, "/");
-      const joinUrl = `${baseDir}index.html?code=${encodeURIComponent(code)}`;
-      qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(joinUrl)}`;
+      const joinUrl = `${window.location.origin}/index.html?code=${encodeURIComponent(code)}`;
+      qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(joinUrl)}`;
     }
 
     // Retour
