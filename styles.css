@@ -1,7 +1,7 @@
 /* Palette pastel + typographie très grasse */
 :root {
     --bg-yellow: #fff5a8;
-    --pink: #ff9ecb;
+    --pink: #f9a7b4;
     --pink-dark: #f477aa;
     --text-black: #222222;
     --star-pink: #ff9ecb;
@@ -49,41 +49,68 @@
     margin-bottom: 24px;
   }
   
-  .logo {
-    position: relative;
-    text-align: center;
-  }
-  
-  .logo-text {
-    font-weight: 900;
-    font-size: 40px;
-    letter-spacing: 0.12em;
-  }
-  
-  .logo-star {
-    position: absolute;
-    font-size: 22px;
-    font-weight: 900;
-  }
-  
-  .logo-star-red {
-    color: var(--star-red);
-    top: -6px;
-    left: -12px;
-  }
-  
-  .logo-star-blue {
-    color: var(--star-blue);
-    top: -10px;
-    right: -10px;
-  }
-  
-  .logo-star-pink {
-    color: var(--star-pink);
-    bottom: -8px;
-    left: 40%;
-  }
-  
+  /* (optionnel) police proche du rendu de ton image */
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+
+.kop-logo{
+  position: relative;
+  display: inline-block;
+  padding: 20px 34px;
+}
+
+.kop-text{
+  font-family: "Payton One", sans-serif; /* en attendant Brother */
+  font-size: 96px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #F9A7B4;
+  line-height: 1;
+}
+
+/* étoiles (positions) */
+.kop-star{ position:absolute; display:block; }
+
+/* rouge (burst) */
+.burst-red{
+  width: 50px; height: 50px;
+  background:#E53935;
+  top: -10px; left: 18px;
+  clip-path: polygon(
+    50% 0%, 58% 20%, 80% 10%, 68% 30%, 100% 35%, 74% 46%,
+    92% 70%, 66% 60%, 60% 90%, 50% 70%, 30% 90%, 34% 60%,
+    8% 70%, 26% 46%, 0% 35%, 32% 30%, 20% 10%, 42% 20%
+  );
+}
+
+/* orange (étoile 8 branches) */
+.star-orange{
+  width: 62px; height: 62px;
+  background:#FF7A1A;
+  top: 10px; right: 6px;
+  clip-path: polygon(
+    50% 0%, 61% 18%, 82% 18%, 66% 34%, 74% 55%, 50% 44%,
+    26% 55%, 34% 34%, 18% 18%, 39% 18%
+  );
+}
+
+/* bleu (étoile 5 branches) */
+.star-blue{
+  width: 50px; height: 50px;
+  background:#2F66FF;
+  bottom: 10px; left: -6px;
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
+    50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
+  );
+}
+
+/* rose (losange étoilé) */
+.diamond-pink{
+  width: 56px; height: 56px;
+  background:#FF4FC3;
+  bottom: -5px; right: 10px;
+  clip-path: polygon(50% 0%, 68% 32%, 100% 50%, 68% 68%, 50% 100%, 32% 68%, 0% 50%, 32% 32%);
+}
   /* Zone principale centrée verticalement */
   .app-main {
     flex: 1;
@@ -121,15 +148,28 @@
     border-radius: var(--radius-pill);
     border: none;
     background-color: var(--pink);
-    color: #fff;
+    color: #fffcb7;
     font-weight: 800;
     font-size: 18px;
     text-align: center;
     outline: none;
   }
   
+  .input-pill input,
+  .input-pill input:focus,
+  .input-pill input:active {
+    color: #fffcb7 !important;
+    caret-color: #fffcb7; /* le curseur */
+  }
+  /* Si le navigateur fait de l'autofill (Safari/Chrome) */
+  .input-pill input:-webkit-autofill,
+  .input-pill input:-webkit-autofill:hover,
+  .input-pill input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fffcb7 !important;
+    transition: background-color 9999s ease-in-out 0s; /* évite le fond auto */
+  }
   .input-pill input::placeholder {
-    color: #ffe4f0;
+    color: #fffcb7;
     opacity: 1;
   }
   
@@ -147,7 +187,7 @@
     width: 100%;
     padding: 16px 22px;
     border-radius: var(--radius-pill);
-    border: 3px solid var(--pink-dark);
+    border: 5px solid var(--pink);
     background-color: transparent;
     font-weight: 900;
     font-size: 20px;
@@ -157,8 +197,8 @@
   }
   
   .btn-pill.primary {
-    background-color: var(--pink);
-    color: #fff;
+    background-color: transparent;
+    color: var(--text-black);
   }
   
   .btn-pill.outline {
@@ -168,7 +208,7 @@
   
   .btn-pill:active {
     transform: translateY(2px);
-    box-shadow: 0 0 0 transparent;
+    box-shadow: var(--text-black);
   }
   
   /* Sélecteurs sur settings */
@@ -178,7 +218,7 @@
     width: 100%;
     padding: 16px 22px;
     border-radius: var(--radius-pill);
-    border: 3px solid var(--pink-dark);
+    border: 5px solid var(--pink);
     background-color: transparent;
     font-weight: 900;
     font-size: 18px;
@@ -236,28 +276,32 @@
   
   .star-button {
     position: relative;
-    width: 96px;
-    height: 96px;
+    width: 110px;
+    height: 110px;
     border-radius: 50% 0 50% 50%;
     border: none;
     background-color: var(--pink);
-    color: #fff;
+    color: var(--bg-yellow);
     font-weight: 900;
-    font-size: 16px;
+    font-size: 14px;
     text-transform: lowercase;
     cursor: pointer;
     display: flex;
-    align-items: center;
+    align-items: flex-start;   /* remonte le texte */
+    padding-top: 40px;         /* ajuste la position */
     justify-content: center;
+    /* ⭐ forme étoile */
+    clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
+    50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
+    );
+    transition: transform 0.15s ease;
   }
   
-  .star-button.secondary {
-    opacity: 0.8;
+  .star-btn:active {
+  transform: scale(0.9);
   }
   
-  .star-button.primary {
-    background-color: var(--pink-dark);
-  }
   
   /* Lobby */
   .lobby-counter {
@@ -316,8 +360,8 @@
   width: 220px;
   height: 220px;
   border-radius: 24px;
-  border: 8px solid var(--qr-gray);
-  background: white;
+  border: none;
+  background: none;
   display: block;
   margin: 18px auto 10px;
 }
